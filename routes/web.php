@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -34,6 +35,26 @@ Route::get('/', function () {
     }
 });
 
+Route::get('/Welcome', function () {
+    
+    return Inertia::render('Welcome', [
+            
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+        'categorias' => Categorias::where('estado', 'Activo')->get(),
+        
+
+    ]);
+
+})->name('Welcome');
+Route::get('/conocenos', function () {
+    
+        return Inertia::render('Conocenos', [
+            
+        ]);
+    
+})->name('conocenos');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -49,6 +70,7 @@ Route::middleware('auth')->group(function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', UserController::class)->middleware('auth');
     Route::resource('roles', RoleController::class);
+    Route::resource('categorias', CategoriasController::class);
 });
 
 

@@ -1,5 +1,5 @@
 <template>
-    <header class="flex items-center justify-between border-b-4 border-sky-600 bg-white px-6 py-4">
+    <header class="flex items-center justify-between border-b-4 border-amber-500 bg-white px-6 py-4">
         <div class="flex items-center">
             <button @click="$page.props.showingMobileMenu = !$page.props.showingMobileMenu"
                 class="text-gray-500 focus:outline-none lg:hidden">

@@ -19,7 +19,7 @@
                         <ul class="flex space-x-4">
                             <li><a :href="route('about')" :class="{ 'underline': route().current('about') }"
                                     class="text-dark cursor border-r-2 border-dark pe-2 hover:underline">Productos</a></li>
-                            <li><a :href="route('about')" :class="{ 'underline': route().current('conocenos') }"
+                            <li><a :href="route('conocenos')" :class="{ 'underline': route().current('conocenos') }"
                                     class="text-dark cursor border-r-2 border-dark pe-2 hover:underline">conócenos</a></li>
 
                             <li><a :href="route('register')" :class="{ 'underline': route().current('register') }"
