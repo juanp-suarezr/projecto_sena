@@ -27,9 +27,18 @@
                 <ClipboardDocumentIcon class="h-6 w-6 text-gray-800" />
                 <span class="mx-3">Categorías </span>
             </nav-link>
+            <nav-link :href="route('productos.index')" :active="route().current().includes('productos')">
+                <ArchiveBoxIcon class="h-6 w-6 text-gray-800" />
+                <span class="mx-3">Productos </span>
+            </nav-link>
+            <nav-link v-if="$page.props.user.permissions.includes('usuarios-listar')" :href="route('clientes.index')"
+                :active="route().current().includes('clientes')">
+                <UserGroupIcon class="h-6 w-6 text-gray-800" />
+                <span class="mx-3">Clientes</span>
+            </nav-link>
             <nav-link v-if="$page.props.user.permissions.includes('usuarios-listar')" :href="route('users.index')"
                 :active="route().current().includes('users')">
-                <UserGroupIcon class="h-6 w-6 text-gray-800" />
+                <UserCircleIcon class="h-6 w-6 text-gray-800" />
                 <span class="mx-3">Usuarios</span>
             </nav-link>
 
@@ -52,7 +61,7 @@ import SeparadorMenu from "@/Components/SeparadorMenu.vue";
 import { Link } from '@inertiajs/vue3';
 import imglogo_w from '/public/assets/img/TAYSU LOGO REGISTRADO.png'
 import { ref } from 'vue'
-import { FingerPrintIcon, UserGroupIcon, ChartPieIcon, ClipboardDocumentIcon, BarsArrowDownIcon } from '@heroicons/vue/24/solid'
+import { FingerPrintIcon, UserGroupIcon, ChartPieIcon, ClipboardDocumentIcon, BarsArrowDownIcon, ArchiveBoxIcon, UserCircleIcon } from '@heroicons/vue/24/solid'
 
 export default {
     components: {
@@ -62,7 +71,9 @@ export default {
         UserGroupIcon,
         ChartPieIcon,
         ClipboardDocumentIcon,
+        ArchiveBoxIcon,
         BarsArrowDownIcon,
+        UserCircleIcon,
         SeparadorMenu
     },
 

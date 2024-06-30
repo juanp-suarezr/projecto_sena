@@ -9,11 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class Categorias extends Authenticatable
+class Clientes extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
-    protected $table = 'categoria';
+    protected $table = 'cliente';
 
     /**
      * The attributes that are mass assignable.
@@ -22,15 +22,14 @@ class Categorias extends Authenticatable
      */
     protected $fillable = [
         'nombre',
-        'keyword',
-        'descripcion',
-        'imagen',
-        'estado'
+        'correo',
+        'direccion',
+        'identificacion',
+        'telefono',
+        'estado',
+
     ];
 
-    public function producto()
-    {
-        return $this->hasMany(Productos::class, 'categoria_id', 'id');
-    }
+    
 
 }

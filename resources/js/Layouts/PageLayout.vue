@@ -6,7 +6,7 @@
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex w-full justify-between items-center">
                     <div class="flex-shrink-0 w-1/4 p-4">
-                        <a href="/" class="text-white text-2xl font-semibold">
+                        <a href="/Welcome" class="text-white text-2xl font-semibold">
                             <figure>
                                 <img class="w-full sm:w-1/2" :src="logo" alt="imagen de logo"
                                     title="¡Hola! ¿Eres nuevo por aquí? Me encanta conocer gente nueva.">
@@ -17,7 +17,7 @@
                     </div>
                     <div class="hidden md:block">
                         <ul class="flex space-x-4">
-                            <li><a :href="route('about')" :class="{ 'underline': route().current('about') }"
+                            <li><a :href="route('productos_cliente.index')" :class="{ 'underline': route().current('productos_cliente') }"
                                     class="text-dark cursor border-r-2 border-dark pe-2 hover:underline">Productos</a></li>
                             <li><a :href="route('conocenos')" :class="{ 'underline': route().current('conocenos') }"
                                     class="text-dark cursor border-r-2 border-dark pe-2 hover:underline">conócenos</a></li>

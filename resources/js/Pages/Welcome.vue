@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
-import { ref, onMounted } from "vue";
+import { ref, onMounted, inject} from "vue";
 import PageLayout from '@/Layouts/PageLayout.vue';
 import bannerInit from '../../../public/assets/img/bannerInit.jpeg';
 import Carousel from 'primevue/carousel';
@@ -24,6 +24,8 @@ import 'aos/dist/aos.css';
 
 AOS.init();
 
+const swal = inject('$swal');
+
 defineProps({
 
     categorias: {
@@ -46,7 +48,7 @@ const getImageUrl = (imageName) => {
 };
 
 const form = useForm({
-    email: '',
+    correo: '',
 });
 
 const responsiveOptions = ref([
@@ -79,6 +81,20 @@ onMounted(() => {
     script.defer = true; // Agrega el atributo defer
     document.head.appendChild(script);
 });
+
+//suscribir correo
+const submit = () => {
+    form.post(route('suscripcion'), {
+        onSuccess: function () {
+
+            swal({
+                title: "Registro Guardado",
+                text: "El correo se ha registrado exitosamente, ahora eres cliente registrado de taysu",
+                icon: "success"
+            })
+        }
+    });
+};
 
 </script>
 
@@ -242,18 +258,18 @@ onMounted(() => {
                             UNETE A LA TAYSU FAMILIA Y RECIBE EL 10% DE DESCUENTO EN TU PRIMERA COMPRA
                         </b>
                     </p>
-                    <form class="mx-auto text-center mt-4 p-4 sm:flex justify-center w-full gap-6">
+                    <form @submit.prevent="submit" class="mx-auto text-center mt-4 p-4 sm:flex justify-center w-full gap-6">
                         <div class="sm:w-1/2">
-                            <InputLabel for="email" value="Email" />
-                            <TextInput id="email" type="email" class="mt-1 block mx-auto" v-model="form.email" required
+                            <InputLabel for="email" value="Correo electrónico" />
+                            <TextInput id="email" type="email" class="mt-1 block mx-auto" v-model="form.correo" required
                                 autocomplete="username" />
-                            <InputError class="mt-2" :message="form.errors.email" />
+                            <InputError class="mt-2" :message="form.errors.correo" />
                         </div>
 
 
                         <PrimaryButton class="mt-4 !bg-secondary" :class="{ 'opacity-25': form.processing }"
                             :disabled="form.processing">
-                            Register
+                            Registrar correo
                         </PrimaryButton>
                     </form>
 
