@@ -8,7 +8,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Models\Categorias;
+use App\Models\Clientes;
+use App\Models\Productos;
+use App\Models\User;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -68,7 +72,12 @@ Route::resource('productos_cliente', ProductosCliController::class);
 Route::post('/suscripcion', [ClientesController::class, 'suscripcion'])->name('suscripcion');
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'categorias' => Categorias::where('estado', 'Activo')->get(),
+        'productos' => Productos::where('estado', 'Activo')->get(),
+        'clientes' => Clientes::all(),
+        
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

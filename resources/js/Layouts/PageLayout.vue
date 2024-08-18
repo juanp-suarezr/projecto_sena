@@ -17,16 +17,22 @@
                     </div>
                     <div class="hidden md:block">
                         <ul class="flex space-x-4">
-                            <li><a :href="route('productos_cliente.index')" :class="{ 'underline': route().current('productos_cliente') }"
-                                    class="text-dark cursor border-r-2 border-dark pe-2 hover:underline">Productos</a></li>
+                            <li><a :href="route('productos_cliente.index')"
+                                    :class="{ 'underline': route().current('productos_cliente') }"
+                                    class="text-dark cursor border-r-2 border-dark pe-2 hover:underline">Productos</a>
+                            </li>
                             <li><a :href="route('conocenos')" :class="{ 'underline': route().current('conocenos') }"
-                                    class="text-dark cursor border-r-2 border-dark pe-2 hover:underline">conócenos</a></li>
+                                    class="text-dark cursor border-r-2 border-dark pe-2 hover:underline">conócenos</a>
+                            </li>
 
                             <li><a :href="route('register')" :class="{ 'underline': route().current('register') }"
                                     v-tooltip.top="{ value: 'Guia de tallas', autoHide: false }"
-                                    class="text-dark cursor hover:underline border-r-2 border-dark pe-2">Guía de tallas</a></li>
+                                    class="text-dark cursor hover:underline border-r-2 border-dark pe-2">Guía de
+                                    tallas</a></li>
                             <li><a :href="route('login')" :class="{ 'underline': route().current('login') }"
                                     class="text-dark cursor hover:underline">carrito</a></li>
+                            <li v-if="$page.props.auth.user != null"><a :href="route('dashboard')" :class="{ 'underline': route().current('dashboard') }"
+                                    class="text-dark cursor hover:underline ps-2 border-l-2 border-dark">dashboard </a></li>
                         </ul>
                     </div>
                     <div class="md:hidden">
@@ -101,12 +107,11 @@ AOS.init();
 
 <style>
 body {
-  font-family: "Public Sans", sans-serif;
-  font-size: 12pt;
-  min-height: 100%;
-  text-align: justify;
-  min-width: 100%;
-  overflow-x: hidden !important;
+    font-family: "Public Sans", sans-serif;
+    font-size: 12pt;
+    min-height: 100%;
+    text-align: justify;
+    min-width: 100%;
+    overflow-x: hidden !important;
 }
-
 </style>
