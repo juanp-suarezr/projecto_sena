@@ -1,4 +1,5 @@
 <template>
+
     <Head title="Productos" />
 
     <AuthenticatedLayout>
@@ -6,8 +7,8 @@
             Productos
         </template>
 
-        <div class="inline-block min-w-full overflow-hidden mb-3 grid md:grid-cols-3 gap-4">
-            <div>
+        <div class="inline-block min-w-full overflow-hidden mb-3 grid sm:grid-cols-10 gap-4">
+            <div class="col-span-2">
                 <select id="estado_users" name="estado" v-model="estado" @change="handleEnterKey"
                     class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
                     <option selected value="">Filtrar por estado</option>
@@ -16,26 +17,27 @@
                     <option value="Bloqueado">Bloqueado</option>
                 </select>
             </div>
-            <div class="...">
-                <label for="default-search"
-                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                <div class="relative">
+            <div class="... flex justify-center gap-4 w-full col-span-5">
+
+                <div class="relative w-full flex justify-center">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
+                        <MagnifyingGlassIcon class="w-4 h-4 text-gray-500" />
                     </div>
                     <input type="search" @keydown.enter="handleEnterKey" v-model="search" id="default-search"
-                        class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-0 focus:border-transparent"
-                        placeholder="Busqueda de usuarios" required>
+                        class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-0 focus:border-transparent"
+                        placeholder="Busqueda por nombre o email" required>
+
+                </div>
+                <div class="flex gap-2">
                     <button type="submit" @click="handleEnterKey"
-                        class="text-white absolute end-2.5 bottom-2.5 bg-sky-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
+                        class="m-auto text-white bg-sky-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Buscar</button>
+                    <button type="button" @click="ClearEnter"
+                        class="m-auto text-gray-400 hover:scale-125 border border-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Limpiar</button>
                 </div>
             </div>
 
-            <div class="text-right p-4">
+
+            <div class="text-right p-4 col-span-3">
                 <PrimaryLink :href="route('productos.create')">
                     Agregar
                 </PrimaryLink>
@@ -91,7 +93,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="prod in productos.data" :key="prod.id" class="text-gray-700">
-                                    
+
                                     <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">{{ prod.nombre }}</p>
                                     </td>
@@ -111,7 +113,9 @@
                                         <p class="text-gray-900 whitespace-no-wrap">{{ prod.talla }}</p>
                                     </td>
                                     <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                        <p class="text-gray-900 whitespace-no-wrap">{{ prod.imagen != 'producto' ? 'SI' : 'NO' }}</p>
+                                        <p class="text-gray-900 whitespace-no-wrap">{{ prod.imagen != 'producto' ? 'SI'
+                                            : 'NO'
+                                            }}</p>
                                     </td>
                                     <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                                         <span v-if="prod.estado == 'Activo'"
@@ -124,10 +128,12 @@
                                         </span>
                                     </td>
                                     <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                        <SecondaryButton class="flex w-full justify-center" :href="route('productos.edit', prod.id)">
+                                        <SecondaryButton class="flex w-full justify-center"
+                                            :href="route('productos.edit', prod.id)">
                                             Editar
                                         </SecondaryButton>
-                                        <PrimaryButton class="flex mt-2 w-full justify-center" @click="mostrarImgModal(prod)">
+                                        <PrimaryButton class="flex mt-2 w-full justify-center"
+                                            @click="mostrarImgModal(prod)">
                                             Imagen
                                         </PrimaryButton>
                                     </td>
@@ -143,14 +149,15 @@
         </div>
 
         <!-- MODAL PROYECTO -->
-        <Dialog v-model:visible="visible" modal position="center" header="Imagen producto" class="max-w-lg md:mx-6 h-full">
+        <Dialog v-model:visible="visible" modal position="center" header="Imagen producto"
+            class="max-w-lg md:mx-6 h-full">
             <figure class="object-contain h-full">
                 <img class="w-full object-contain mt-0" :src="getImageUrl(imagenURL)"
                     alt="imagen producto accesorios para mascotas" title="Taysu accesorios">
                 <figcaption lang="es" class="hidden">Esta es una imagen de un producto de taysu accesorios
                 </figcaption>
             </figure>
-            
+
         </Dialog>
 
     </AuthenticatedLayout>
@@ -167,7 +174,7 @@ import { router } from '@inertiajs/vue3'
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Avatar from 'primevue/avatar';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import { EyeIcon} from '@heroicons/vue/24/solid'
+import { EyeIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import Dialog from 'primevue/dialog';
 
 const props = defineProps({
@@ -199,6 +206,18 @@ const handleEnterKey = () => {
         }
     );
 };
+const ClearEnter = () => {
+    search.value = '';
+    estado.value = '';
+    router.get(
+        "/productos",
+        { search: search.value, estado: estado.value },
+        {
+            preserveState: true,
+            replace: true,
+        }
+    );
+};
 const getInitials = function (name) {
     let parts = name.split(' ');
     let initials = '';
@@ -217,7 +236,7 @@ const getInitials = function (name) {
 const mostrarImgModal = prod => {
     imagenURL.value = prod.imagen;
     visible.value = true;
-    
+
 };
 
 //IMAGEN 

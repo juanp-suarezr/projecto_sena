@@ -39,7 +39,11 @@ defineProps({
         type: String,
         required: true,
     },
+    user: {
+        type: Object,
+    },
 });
+
 
 //IMAGEN 
 const getImageUrl = (imageName) => {
