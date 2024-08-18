@@ -1,10 +1,10 @@
 <template>
 
-    <Head title="Productos" />
+    <Head title="Clientes" />
 
     <AuthenticatedLayout>
         <template #header>
-            Productos
+            Clientes
         </template>
 
         <div class="inline-block min-w-full overflow-hidden mb-3 grid md:grid-cols-3 gap-4">
@@ -12,9 +12,9 @@
                 <select id="estado_users" name="estado" v-model="estado" @change="handleEnterKey"
                     class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
                     <option selected value="">Filtrar por estado</option>
-                    <option value="Activo">Activo</option>
-                    <option value="Agotado">Agotado</option>
-                    <option value="Bloqueado">Bloqueado</option>
+                    <option value="Activo">Nuevo</option>
+                    <option value="Agotado">Fiel</option>
+                    <option value="Bloqueado">Master</option>
                 </select>
             </div>
             <div class="...">
@@ -106,11 +106,11 @@
                                         <p class="text-gray-900 whitespace-no-wrap">{{ cli.correo }}</p>
                                     </td>
                                     <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                        <p class="text-gray-900 whitespace-no-wrap">1</p>
+                                        <p class="text-gray-900 whitespace-no-wrap">0</p>
                                     </td>
                                     
                                     <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                        <span v-if="cli.estado == 'Activo'"
+                                        <span v-if="cli.estado == 'Nuevo'"
                                             class="bg-lime-500 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded">
                                             {{ cli.estado }}
                                         </span>
